@@ -41,6 +41,15 @@ function initMap() {
     var marker = null;
 
     map.data.addListener('mouseover', function (event) {
+        let totalLatLong = [0, 0];
+        let points = 0;
+        event.feature.getGeometry().forEachLatLng(element => {
+            totalLatLong[0] += element.lat();
+            totalLatLong[1] += element.lng();
+            points++;
+        });
+        totalLatLong[0] /= points;
+        totalLatLong[1] /= points;
 
         let precinct = event.feature.j.precinct;
         if (infowindow != null) infowindow.close();
@@ -50,7 +59,7 @@ function initMap() {
 
         if (marker != null) marker.setMap(null);
         marker = new google.maps.Marker({
-            position: event.latLng,
+            position: new google.maps.LatLng({lat: totalLatLong[0], lng: totalLatLong[1]}),
             map: map,
             title: 'marker'
         });
