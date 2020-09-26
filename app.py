@@ -240,4 +240,4 @@ def load_police_data():
 if __name__ == "__main__":
     load_police_data()
     app.debug = True
-    app.run()
+    app.run(port=80)
