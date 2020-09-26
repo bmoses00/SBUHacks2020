@@ -78,13 +78,13 @@ function initMap() {
                 }
 
                 let latLong = { lat: position.coords.latitude, lng: position.coords.longitude };
-        
+
                 selected_location = new google.maps.Marker({
                     position: new google.maps.LatLng(latLong) ,
                     map: map,
                     title: 'Selected Location'
                   });
-        
+
                 map.setCenter(new google.maps.LatLng(latLong));
 
                 let match = -1;
