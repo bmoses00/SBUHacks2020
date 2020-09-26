@@ -17,24 +17,12 @@ function initMap() {
             },
             strictBounds: false,
         },
-<<<<<<< HEAD
-      strictBounds: false,
-      center: new google.maps.LatLng(coords[0], coords[1]),
-      mapTypeId: 'terrain',
-      mapTypeControlOptions: { mapTypeIds: [] },
-      streetViewControl:false
-
-    });
-
-
-=======
         strictBounds: false,
         center: new google.maps.LatLng(coords[0], coords[1]),
         mapTypeId: 'terrain',
         mapTypeControlOptions: { mapTypeIds: [] },
         streetViewControl: false
     });
->>>>>>> fecaeeb6e4a3a932aee9f1168adb1df85d8702aa
 
     var script = document.createElement('script');
     var dat = map.data.loadGeoJson('static/data/precincts.geojson');

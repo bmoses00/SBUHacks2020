@@ -1,26 +1,23 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-    height: 93%;
+
+    height: 100%;
 }
 #box{
-    height:93%;
+
+    padding-top: 45px;
+    height:100%;
     float: left;
     z-index: 100;
     position: absolute;
 }
 #search{
-    height:93%;
+
+    padding-top: 45px;
+    height:100%;
     float: right;
     z-index: 100;
-}
-#nav{
-    height: 7%;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    /* max-width: 100%;
-    min-width: 1000px; */
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
