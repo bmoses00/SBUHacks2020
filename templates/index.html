@@ -1,47 +1,55 @@
 <!DOCTYPE HMTL>
 <html>
-    <head>
-        <link rel="icon" href="data:;base64,=">
-        <link rel="stylesheet" href="static/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    </head>
-    <body>
-        <script src = "static/js/script.js"></script>
-        <nav id = "nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">SBUHack</a>
-             <ul class="navbar-nav mr-auto">
-                <li class="nav-item right">
-                    <a class="nav-link" href="#">Graph</a>
-                </li>
-                <li class="nav-item right">
-                    <a class="nav-link" href="#">Contacts</a>
-                </li>
-                <li class="nav-item right">
-                    <a class="nav-link" href="#">Resources</a>
-                </li>
-            </ul>
-        </nav>
-        <div id = "box" class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+<head>
+    <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home">SBUHack</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item right">
+                <a class="nav-link" href="/">Map</a>
+            </li>
+            <li class="nav-item right">
+                <a class="nav-link" href="/graph">Graph</a>
+            </li>
+            <li class="nav-item right">
+                <a class="nav-link" href="/contacts">Contacts</a>
+            </li>
+            <li class="nav-item right">
+                <a class="nav-link" href="/resources">Resources</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="box" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h4 id = "precinct_title" class="card-title">Card title</h4>
+            <!-- <p class="card-text">Total complaints: </p>
+            <p class="card-text">Ranking: (out of 77, lower is worse):</p>
+            <p class="card-text"># officers with complaints in precinct:</p> -->
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Total complaints: </li>
+                <li class="list-group-item">Ranking: (out of 77, lower is worse):</li>
+                <li class="list-group-item"># officers with complaints in precinct:</li>
+                <hr>
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
         </div>
-        <div id="map"></div>
-        <!-- Replace the value of the key parameter with your own API key. -->
-        <script defer
-        src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
-        </script>
 
-    </body>
+        <div class="card-body">
+        </div>
+    </div>
+    <div id="map"></div>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script src="static/js/script.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
+    </script>
+
+</body>
+
 </html>
