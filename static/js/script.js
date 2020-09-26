@@ -1,9 +1,21 @@
 var map;
 
+var coords = [40.7128, -74.0060]
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
-    center: new google.maps.LatLng(40.7128, -74.0060),
+    zoom: 10,
+    minZoom: 10,
+    restriction: {
+      latLngBounds: {
+          north: coords[0] + .4,
+          south: coords[0] - .4,
+          west: coords[1] - .4,
+          east: coords[1] + .4,
+        },
+      strictBounds: false,
+    },
+    center: new google.maps.LatLng(coords[0], coords[1]),
     mapTypeId: 'terrain'
   });
 
