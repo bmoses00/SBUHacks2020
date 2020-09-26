@@ -25,7 +25,7 @@ function initMap() {
         },
         strictBounds: false,
         center: new google.maps.LatLng(coords[0], coords[1]),
-        mapTypeId: 'terrain',
+        mapTypeId: 'roadmap',
         mapTypeControlOptions: { mapTypeIds: [] },
         streetViewControl: false
     });
