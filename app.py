@@ -202,8 +202,17 @@ def load_police_data():
             val = row[allegation_idx]
             allegation_dict[val] = allegation_dict.get(val, 0) + 1
 
-    for k in allegation_dict:
-        allegation_frequencies.append([k, allegation_dict[k]])
+    a_keys = [k for k in allegation_dict]
+    a_keys.sort(key = allegation_dict[k], reverse = True)
+
+    for i in range(9):
+        allegation_frequencies.append([a_keys[i], allegation_dict[a_keys[i]]])
+
+    remaining = 0
+    for i in range(9, len(a_keys)):
+        remaining += allegation_dict[a_keys[i]]
+
+    allegation_frequencies.append(["Other", remaining])
 
     board_idx = columns.index("Board Disposition")
 
@@ -213,8 +222,20 @@ def load_police_data():
             val = row[board_idx]
             board_dict[val] = board_dict.get(val, 0) + 1
 
-    for k in board_dict:
-        board_frequences.append([k, board_dict[k]])
+    # for k in board_dict:
+    #     board_frequences.append([k, board_dict[k]])
+
+    b_keys = [k for k in board_dict]
+    b_keys.sort(key = board_dict[k], reverse = True)
+
+    for i in range(9):
+        board_frequences.append([b_keys[i], board_dict[b_keys[i]]])
+
+    remaining = 0
+    for i in range(9, len(b_keys)):
+        remaining += board_dict[b_keys[i]]
+
+    board_frequences.append(["Other", remaining])
 
 if __name__ == "__main__":
     load_police_data()
