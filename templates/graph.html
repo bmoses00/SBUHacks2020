@@ -1,9 +1,17 @@
 {% extends "template.html" %}
 {% block body %}
 <div class= "container">
+    <div class="text-center"> <b>
+        <h3>Here, we have compliled statistics about police misconduct using the publicly available
+        NYPD misconduct database:</h3>
+    </b> </div>
+</div>
+<hr>
+<div class= "container">
     <div class="text-center">
-        This table shows the number of complaints each officer has relative to their overall ranking <br>
-        (lower ranking meaning higher number of complaints). Data for officers is drawn from NYPD complaints <br>
+        <b>Complaint Distribution</b><br>
+        This table shows the number of complaints each officer has relative to their overall ranking
+        (lower ranking meaning higher number of complaints). Data for officers is drawn from NYPD complaints
         database, meaning it only shows officers who've had complaints filed against them.
     </div>
 
@@ -12,16 +20,30 @@
 <hr>
 <div class= "container">
     <div class="text-center">
-        The graph below shows NYPD complaints by year:
+        <b>NYPD complaints by year:</b> (data for 2020 is incomplete)
     </div>
     <div id="yearly"></div>
 </div>
 <hr>
 <div class= "container">
     <div class="text-center">
-        This PIE chart shows FADO complaints by breakdown:
+        <b>FADO complaints by breakdown:</b>
     </div>
     <div id="fado"></div>
+</div>
+<hr>
+<div class= "container">
+    <div class="text-center">
+        <b>Allegations by breakdown:</b>
+    </div>
+    <div id="allegations"></div>
+</div>
+<hr>
+<div class= "container">
+    <div class="text-center">
+        <b>Board dispositions by breakdown:</b>
+    </div>
+    <div id="dispositions"></div>
 </div>
 <hr>
 
