@@ -35,7 +35,7 @@ def officer_complaint_ranking():
     return jsonify({"arr": short_arr})
 
 @app.route("/api/get_complaints_by_year", methods=['GET', 'POST'])
-def complaints_by_year():
+def complaints_by_yea():
     return jsonify({"arr": complaints_by_year})
 
 @app.route("/api/get_fado_frequences", methods=['GET', 'POST'])
@@ -157,7 +157,8 @@ def load_police_data():
     first_name_idx = columns.index("First Name")
     last_name_idx = columns.index("Last Name")
 
-    for row in range(1, len(ccrb_database)):
+    for r in range(1, len(ccrb_database)):
+        row = ccrb_database[r]
         officer_name = row[first_name_idx] + " " + row[last_name_idx]
         officer_complaint_dict[officer_name] = officer_complaint_dict.get(officer_name, 0) + 1
 
@@ -172,7 +173,8 @@ def load_police_data():
 
     incident_idx = columns.index("Incident Date")
 
-    for row in range(1, len(ccrb_database)):
+    for r in range(1, len(ccrb_database)):
+        row = ccrb_database[r]
         if row[incident_idx] != 'NULL':
             last_4 = row[incident_idx][-4:]
             if last_4 != '1900' and last_4 != '1983' and last_4 != '1984':
@@ -183,7 +185,8 @@ def load_police_data():
 
     fado_idx = columns.index("FADO Type")
 
-    for row in range(1, len(ccrb_database)):
+    for r in range(1, len(ccrb_database)):
+        row = ccrb_database[r]
         if row[fado_idx] != 'NULL':
             val = row[fado_idx]
             fado_dict[val] = fado_dict.get(val, 0) + 1
@@ -191,9 +194,10 @@ def load_police_data():
     for k in fado_dict:
         fado_frequences.append([k, fado_dict[k]])
 
-    allegation_idx = columns.index("Allegation Type")
+    allegation_idx = columns.index("Allegation")
 
-    for row in range(1, len(ccrb_database)):
+    for r in range(1, len(ccrb_database)):
+        row = ccrb_database[r]
         if row[allegation_idx] != 'NULL':
             val = row[allegation_idx]
             fado_dict[val] = fado_dict.get(val, 0) + 1
@@ -201,9 +205,10 @@ def load_police_data():
     for k in fado_dict:
         fado_frequences.append([k, fado_dict[k]])
 
-    board_idx = columns.index("Board Type")
+    board_idx = columns.index("Board Disposition")
 
-    for row in range(1, len(ccrb_database)):
+    for r in range(1, len(ccrb_database)):
+        row = ccrb_database[r]
         if row[board_idx] != 'NULL':
             val = row[board_idx]
             fado_dict[val] = fado_dict.get(val, 0) + 1
@@ -212,6 +217,6 @@ def load_police_data():
         fado_frequences.append([k, fado_dict[k]])
 
 if __name__ == "__main__":
-    # load_police_data()
+    load_police_data()
     app.debug = True
     app.run()
