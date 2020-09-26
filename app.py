@@ -92,9 +92,9 @@ def data_by_precinct():
 def home():
     return render_template("index.html")
 
-@app.route("/graph")
-def graph():
-    return render_template("graph.html")
+@app.route("/data")
+def data():
+    return render_template("data.html")
 
 @app.route("/contacts")
 def contacts():
