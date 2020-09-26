@@ -23,6 +23,9 @@ d3.csv("static/data/CCRB_database_raw.csv").then(function(data) {
           columns: [
             sorting_arr,
           ],
+          colors: {
+               officer_ranking: "#ff0000"
+             },
           types: {
             officer_ranking: "bar"
           }
