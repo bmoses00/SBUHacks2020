@@ -200,10 +200,10 @@ def load_police_data():
         row = ccrb_database[r]
         if row[allegation_idx] != 'NULL':
             val = row[allegation_idx]
-            fado_dict[val] = fado_dict.get(val, 0) + 1
+            allegation_dict[val] = allegation_dict.get(val, 0) + 1
 
-    for k in fado_dict:
-        fado_frequences.append([k, fado_dict[k]])
+    for k in allegation_dict:
+        allegation_frequencies.append([k, allegation_dict[k]])
 
     board_idx = columns.index("Board Disposition")
 
@@ -211,10 +211,10 @@ def load_police_data():
         row = ccrb_database[r]
         if row[board_idx] != 'NULL':
             val = row[board_idx]
-            fado_dict[val] = fado_dict.get(val, 0) + 1
+            board_dict[val] = board_dict.get(val, 0) + 1
 
-    for k in fado_dict:
-        fado_frequences.append([k, fado_dict[k]])
+    for k in board_dict:
+        board_frequences.append([k, board_dict[k]])
 
 if __name__ == "__main__":
     load_police_data()
