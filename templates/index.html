@@ -1,14 +1,21 @@
 <!DOCTYPE HMTL>
 <html>
-<head>
-  <link rel="icon" href="data:;base64,=">
-</head>
-<body>
+    <head>
+        <link rel="icon" href="data:;base64,=">
+        <link rel="stylesheet" href="static/css/style.css">
+    </head>
+    <body>
 
-<script src="http://d3js.org/d3.v5.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.js"></script>
+        <script src="http://d3js.org/d3.v5.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.js"></script>
 
-<script src = "static/js/script.js"></script>
+        <script src = "static/js/script.js"></script>
 
-</body>
+        <div id="map"></div>
+        <!-- Replace the value of the key parameter with your own API key. -->
+        <script defer
+        src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
+        </script>
+
+    </body>
 </html>
