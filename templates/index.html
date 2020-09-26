@@ -1,32 +1,8 @@
 <!DOCTYPE HMTL>
-<html>
 
-<head>
-    <link rel="icon" href="data:;base64,=">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends "template.html" %}
+{% block body %}
 
-</head>
-
-<body>
-    <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/home">SBUHack</a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item right">
-                <a class="nav-link" href="/">Map</a>
-            </li>
-            <li class="nav-item right">
-                <a class="nav-link" href="/graph">Graph</a>
-            </li>
-            <li class="nav-item right">
-                <a class="nav-link" href="/contacts">Contacts</a>
-            </li>
-            <li class="nav-item right">
-                <a class="nav-link" href="/resources">Resources</a>
-            </li>
-        </ul>
-    </nav>
     <div id="box" class="card" style="width: 18rem;">
         <div class="card-body">
             <h4 id = "precinct_title" class="card-title">Card title</h4>
@@ -44,12 +20,18 @@
         <div class="card-body">
         </div>
     </div>
+    <div id = "search" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h3 class="card-title">Search</h3>
+            <input class="form-control form-control-lg" type="text" placeholder="Address">
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
     <div id="map"></div>
-    <!-- Replace the value of the key parameter with your own API key. -->
     <script src="static/js/script.js"></script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
     </script>
 
-</body>
-
-</html>
+{% endblock body %}
