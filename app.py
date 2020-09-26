@@ -15,6 +15,13 @@ def main():
     config.read('properties.ini')
     return render_template("index.html", key=config["DEFAULT"]["Key"])
 
+@app.route("/api/get_rankings", methods=['GET', 'POST'])
+def data_rankings():
+    dat = {
+        "rankings": [[precinct, precinct_rank[precinct]] for precinct in precinct_rank]
+    }
+    return dat
+
 @app.route("/api/get_data_by_precinct", methods=['GET', 'POST'])
 def data_by_precinct():
     precinct_num = int(request.args.get('precinct'))
