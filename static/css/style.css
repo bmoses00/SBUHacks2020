@@ -9,12 +9,18 @@
     z-index: 100;
     position: absolute;
 }
+#search{
+    height:93%;
+    float: right;
+    z-index: 100;
+}
 #nav{
     height: 7%;
     margin-right: auto;
-    margin-left: auto;    
-    max-width: 100%;
-    min-width: 1000px;
+    margin-left: auto;
+    width: 100%;
+    /* max-width: 100%;
+    min-width: 1000px; */
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {

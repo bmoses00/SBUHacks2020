@@ -16,12 +16,12 @@ function initMap() {
             strictBounds: false,
         },
       strictBounds: false,
-    },
-    center: new google.maps.LatLng(coords[0], coords[1]),
-    mapTypeId: 'terrain',
-    mapTypeControlOptions: { mapTypeIds: [] },
-    streetViewControl:false
-  });
+      center: new google.maps.LatLng(coords[0], coords[1]),
+      mapTypeId: 'terrain',
+      mapTypeControlOptions: { mapTypeIds: [] },
+      streetViewControl:false
+
+    });
 
 
 
