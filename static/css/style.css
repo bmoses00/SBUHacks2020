@@ -40,6 +40,10 @@ html, body {
     padding: 0;
 }
 
+
+.c3-axis .tick line {display: none;}
+
 body{
     padding-top: 55px;
 }
+
