@@ -14,14 +14,22 @@
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
-.container:hover .image {
+.image_hover:hover .image {
   opacity: 0.3;
 }
 
-.container:hover .middle {
+.image_hover:hover .middle {
   opacity: 1;
 }
 
+.image{
+    height: 400px;
+}
+
+.resource_image{
+    max-height: 300px;
+    max-width: 300px;
+}
 #box{
     height:100%;
     float: left;
