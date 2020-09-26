@@ -19,8 +19,6 @@ function initMap() {
     mapTypeId: 'terrain'
   });
 
-
-
   // Create a <script> tag and set the USGS URL as the source.
   var script = document.createElement('script');
   // This example uses a local copy of the GeoJSON stored at
@@ -28,11 +26,35 @@ function initMap() {
   script.src = map.data.loadGeoJson('static/data/precincts.geojson');
   document.getElementsByTagName('head')[0].appendChild(script);
 
+  var infowindow = null;
+  var marker = null;
 
   map.data.addListener('mouseover', function(event) {
-      // console.log(event)
-    console.log(event.feature.j.precinct)
-  })
+
+    let precinct = event.feature.j.precinct;
+    if (infowindow != null) infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+      content: "Precinct:" + precinct,
+    });
+
+    if (marker != null) marker.setMap(null);
+    marker = new google.maps.Marker({
+      position: event.latLng,
+      map: map,
+      title: 'marker'
+    });
+    marker.setVisible(false);
+
+    infowindow.open(map, marker);
+  });
+  map.data.addListener('mouseout', function(event) {
+      if (infowindow != null) infowindow.close();
+      if (marker != null) marker.setMap(null);
+  });
+  map.data.addListener('click', function(event) {
+      console.log('hi');
+  });
+
 }
 
 // Loop through the results array and place a marker for eachmap.data.loadGeoJson('data.json')// set of coordinates.
