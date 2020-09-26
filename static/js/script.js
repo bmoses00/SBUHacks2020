@@ -78,22 +78,29 @@ function initMap() {
                 }
 
                 let latLong = { lat: position.coords.latitude, lng: position.coords.longitude };
-        
+
                 selected_location = new google.maps.Marker({
                     position: new google.maps.LatLng(latLong) ,
                     map: map,
                     title: 'Selected Location'
                   });
-        
+
                 map.setCenter(new google.maps.LatLng(latLong));
 
                 let match = -1;
                 for (let i = 0; i < features.length; i++) {
-                    // if (google.maps.geometry.poly.containsLocation(latLong, features[i].getGeometry())) {
-                    //     match = i;
-                    //     display_data(features[i].j.precinct);
-                    //     break;
-                    // }
+                    // console.log(features[i].getGeometry().getType());
+                    features[i].getGeometry().getArray().forEach(polygon => {
+                        // console.log(polygon.getType());
+                        // console.log(Object.getOwnPropertyNames(polygon));
+                        // console.log(polygon.getGeometry());
+                        // console.log(polygon.getVisible());
+                        if (google.maps.geometry.poly.containsLocation(new google.maps.LatLng(latLong), polygon)) {
+                            match = i;
+                            display_data(features[i].j.precinct);
+                            return;
+                        }
+                    });
                 }
             });
         } else {
