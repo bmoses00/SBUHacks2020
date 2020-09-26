@@ -26,9 +26,7 @@ board_dict = {}
 
 @app.route("/")
 def main():
-    config = configparser.ConfigParser()
-    config.read('properties.ini')
-    return render_template("home.html", key=config["DEFAULT"]["Key"])
+    return render_template("home.html")
 
 @app.route("/api/get_officer_complaint_ranking", methods=['GET', 'POST'])
 def officer_complaint_ranking():
@@ -90,7 +88,9 @@ def data_by_precinct():
 
 @app.route("/map")
 def home():
-    return render_template("index.html")
+    config = configparser.ConfigParser()
+    config.read('properties.ini')
+    return render_template("index.html", key=config["DEFAULT"]["Key"])
 
 @app.route("/data")
 def data():
