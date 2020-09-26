@@ -25,6 +25,9 @@
 .image{
     height: 400px;
 }
+.name{
+    color:dodgerblue;
+}
 
 .resource_image{
     max-height: 300px;
@@ -53,4 +56,3 @@ html, body {
 body{
     padding-top: 55px;
 }
-
