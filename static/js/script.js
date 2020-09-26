@@ -50,7 +50,7 @@ function initMap() {
 
         if (marker != null) marker.setMap(null);
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng({lat: totalLatLong[0], lng: totalLatLong[1]}),
+            position: new google.maps.LatLng({ lat: totalLatLong[0], lng: totalLatLong[1] }),
             map: map,
             title: 'marker'
         });
@@ -65,8 +65,8 @@ function initMap() {
     map.data.addListener('click', function (event) {
         display_data(event.feature.j.precinct);
     });
-    map.addListener('click', function(event) {
-        sidebar.style.display = "None"
+    map.addListener('click', function (event) {
+        sidebar.style.display = "None";
     });
 
 }
@@ -75,16 +75,17 @@ function display_data(precinct) {
     sidebar.style.display = "";
     document.getElementById("precinct_title").innerHTML = "Precinct " + precinct;
 
-    fetch('api/get_data_by_precint&precint=' + precinct)
+    fetch('api/get_data_by_precinct?precinct=' + precinct)
         .then(response => response.json())
         .then(data => {
+            // console.log(data);
+
+            document.getElementById("total_complaints").textContent = "Total Complaints: " + data.total_complaints;
+            document.getElementById("ranking").textContent = "Ranking: (out of 77, lower is worse): " + data.ranking;
+            document.getElementById("num_officers").textContent = "# officers with complaints in precinct: " + data.unique_officers;
 
 
-
-
-
-
-        })
+        });
 
 }
 
