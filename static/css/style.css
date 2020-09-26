@@ -18,3 +18,5 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.c3-axis .tick line {display: none;}
