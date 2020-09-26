@@ -25,8 +25,16 @@ function initMap() {
     });
 
     var script = document.createElement('script');
-    var dat = map.data.loadGeoJson('static/data/precincts.geojson');
+    map.data.loadGeoJson('static/data/precincts.geojson', {}, feature_arr => {
+        console.log(arr);
+    });
     document.getElementsByTagName('head')[0].appendChild(script);
+
+    console.log("gonna print");
+
+    map.data.forEach(element => {
+        console.log("dat: " + element);
+    });
 
     var infowindow = null;
     var marker = null;
@@ -83,6 +91,7 @@ function display_data(precinct) {
             document.getElementById("total_complaints").textContent = "Total Complaints: " + data.total_complaints;
             document.getElementById("ranking").textContent = "Ranking: (out of 77, lower is worse): " + data.ranking;
             document.getElementById("num_officers").textContent = "# officers with complaints in precinct: " + data.unique_officers;
+            //make 1 red, 77 green?
 
 
         });
