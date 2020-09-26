@@ -46,6 +46,21 @@ def data_by_precinct():
     # config.read('properties.ini')
     # return render_template("index.html", key=config["DEFAULT"]["Key"])
 
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+@app.route("/graph")
+def graph():
+    return render_template("graph.html")
+
+@app.route("/contacts")
+def contacts():
+    return render_template("contacts.html")
+
+@app.route("/resources")
+def resources():
+    return render_template("resources.html")
 
 def load_police_data():
     print("loading data")
