@@ -19,12 +19,20 @@ function initMap() {
     mapTypeId: 'terrain'
   });
 
+
+
   // Create a <script> tag and set the USGS URL as the source.
   var script = document.createElement('script');
   // This example uses a local copy of the GeoJSON stored at
   // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
   script.src = map.data.loadGeoJson('static/data/precincts.geojson');
   document.getElementsByTagName('head')[0].appendChild(script);
+
+
+  map.data.addListener('mouseover', function(event) {
+      // console.log(event)
+    console.log(event.feature.j.precinct)
+  })
 }
 
 // Loop through the results array and place a marker for eachmap.data.loadGeoJson('data.json')// set of coordinates.
