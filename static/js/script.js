@@ -1,4 +1,6 @@
 var map;
+var sidebar = document.getElementById("box");
+sidebar.style.display = "None";
 
 var coords = [40.7128, -74.0060];
 
@@ -22,19 +24,8 @@ function initMap() {
         streetViewControl: false
     });
 
-
-
-    // Create a <script> tag and set the USGS URL as the source.
     var script = document.createElement('script');
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
     var dat = map.data.loadGeoJson('static/data/precincts.geojson');
-    console.log(dat);
-    console.log();
-    // console.log(map.data.forEach(element => {
-    //     console.log(element);
-    // })
-    // );
     document.getElementsByTagName('head')[0].appendChild(script);
 
     var infowindow = null;
@@ -45,7 +36,7 @@ function initMap() {
         let precinct = event.feature.j.precinct;
         if (infowindow != null) infowindow.close();
         infowindow = new google.maps.InfoWindow({
-            content: "Precinct:" + precinct,
+            content: "Precinct " + precinct,
         });
 
         if (marker != null) marker.setMap(null);
@@ -63,12 +54,31 @@ function initMap() {
         if (marker != null) marker.setMap(null);
     });
     map.data.addListener('click', function (event) {
-        console.log('hi');
+        display_data(event.feature.j.precinct);
+    });
+    map.addListener('click', function(event) {
+        sidebar.style.display = "None"
     });
 
 }
 
-// Loop through the results array and place a marker for eachmap.data.loadGeoJson('data.json')// set of coordinates.
+function display_data(precinct) {
+    sidebar.style.display = "";
+    document.getElementById("precinct_title").innerHTML = "Precinct " + precinct;
+
+    fetch('api/get_data_by_precint&precint=' + precinct)
+        .then(response => response.json())
+        .then(data => {
+
+
+
+
+
+
+        })
+
+}
+
 window.eqfeed_callback = function (results) {
     for (var i = 0; i < results.features.length; i++) {
         var coords = results.features[i].geometry.coordinates;
