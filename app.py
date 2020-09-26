@@ -203,7 +203,7 @@ def load_police_data():
             allegation_dict[val] = allegation_dict.get(val, 0) + 1
 
     a_keys = [k for k in allegation_dict]
-    a_keys.sort(key = allegation_dict[k], reverse = True)
+    a_keys.sort(key = lambda x: allegation_dict[x], reverse = True)
 
     for i in range(9):
         allegation_frequencies.append([a_keys[i], allegation_dict[a_keys[i]]])
@@ -226,7 +226,7 @@ def load_police_data():
     #     board_frequences.append([k, board_dict[k]])
 
     b_keys = [k for k in board_dict]
-    b_keys.sort(key = board_dict[k], reverse = True)
+    b_keys.sort(key = lambda x: board_dict[x], reverse = True)
 
     for i in range(9):
         board_frequences.append([b_keys[i], board_dict[b_keys[i]]])
