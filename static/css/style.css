@@ -3,6 +3,12 @@
 #map {
     height: 93%;
 }
+#box{
+    height:93%;
+    float: left;
+    z-index: 100;
+    position: absolute;
+}
 #nav{
     height: 7%;
 }
