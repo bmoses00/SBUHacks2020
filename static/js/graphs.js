@@ -1,6 +1,6 @@
 fetch('api/get_officer_complaint_ranking').then(response => response.json())
     .then(data => {
-        data.arr.splice(0, 0, "Officer Ranking");
+        data.arr.splice(0, 0, "Complaint Count");
         console.log(data.arr.length)
         let ranking = ["x"];
         for (let i = 1; i <= 1461; i++) {
@@ -15,10 +15,10 @@ fetch('api/get_officer_complaint_ranking').then(response => response.json())
                data.arr,
              ],
              colors: {
-               "Officer Ranking": "#ff0000"
+               "Complaint Count": "#ff0000"
              },
              types: {
-               "Officer Ranking": "bar"
+               "Complaint Count": "bar"
              }
            }
        });
