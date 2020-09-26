@@ -8,12 +8,47 @@ precinct_rank = {}
 
 app = Flask(__name__)
 
+officer_complaint_dict = {}
+short_arr = []
+
+year_complaint_dict = {}
+complaints_by_year = []
+
+fado_frequences = []
+fado_dict = {}
+
+allegation_frequencies = []
+allegation_dict = {}
+
+board_frequences = []
+board_dict = {}
+
 
 @app.route("/")
 def main():
     config = configparser.ConfigParser()
     config.read('properties.ini')
     return render_template("index.html", key=config["DEFAULT"]["Key"])
+
+@app.route("/api/get_officer_complaint_ranking", methods=['GET', 'POST'])
+def officer_complaint_ranking():
+    return jsonify({"arr": short_arr})
+
+@app.route("/api/get_complaints_by_year", methods=['GET', 'POST'])
+def complaints_by_year():
+    return jsonify({"arr": complaints_by_year})
+
+@app.route("/api/get_fado_frequences", methods=['GET', 'POST'])
+def fado():
+    return jsonify({"arr": fado_frequences})
+
+@app.route("/api/get_allegation_frequences", methods=['GET', 'POST'])
+def allegation():
+    return jsonify({"arr": allegation_frequencies})
+
+@app.route("/api/get_board_frequences", methods=['GET', 'POST'])
+def board():
+    return jsonify({"arr": board_frequences})
 
 @app.route("/api/get_rankings", methods=['GET', 'POST'])
 def data_rankings():
@@ -118,8 +153,65 @@ def load_police_data():
     for i in range(len(temp_precint_rank_arr)):
         precinct_rank[temp_precint_rank_arr[i][1]] = i
 
+    
+    first_name_idx = columns.index("First Name")
+    last_name_idx = columns.index("Last Name")
+
+    for row in range(1, len(ccrb_database)):
+        officer_name = row[first_name_idx] + " " + row[last_name_idx]
+        officer_complaint_dict[officer_name] = officer_complaint_dict.get(officer_name, 0) + 1
+
+    complaint_counts = [officer_complaint_dict[officer] for officer in officer_complaint_dict]
+    complaint_counts.sort(reverse = True)
+
+    for i in range(5):
+        short_arr.append(complaint_counts[i])
+
+    for i in range(5, len(complaint_counts), 50):
+        short_arr.append(complaint_counts[i])
+
+    incident_idx = columns.index("Incident Date")
+
+    for row in range(1, len(ccrb_database)):
+        if row[incident_idx] != 'NULL':
+            last_4 = row[incident_idx][-4:]
+            if last_4 != '1900' and last_4 != '1983' and last_4 != '1984':
+                year_complaint_dict[last_4] = year_complaint_dict.get(last_4, 0) + 1
+    
+    for i in range(1985, 2020+1):
+        complaints_by_year.append(year_complaint_dict[str(i)])
+
+    fado_idx = columns.index("FADO Type")
+
+    for row in range(1, len(ccrb_database)):
+        if row[fado_idx] != 'NULL':
+            val = row[fado_idx]
+            fado_dict[val] = fado_dict.get(val, 0) + 1
+
+    for k in fado_dict:
+        fado_frequences.append([k, fado_dict[k]])
+
+    allegation_idx = columns.index("Allegation Type")
+
+    for row in range(1, len(ccrb_database)):
+        if row[allegation_idx] != 'NULL':
+            val = row[allegation_idx]
+            fado_dict[val] = fado_dict.get(val, 0) + 1
+
+    for k in fado_dict:
+        fado_frequences.append([k, fado_dict[k]])
+
+    board_idx = columns.index("Board Type")
+
+    for row in range(1, len(ccrb_database)):
+        if row[board_idx] != 'NULL':
+            val = row[board_idx]
+            fado_dict[val] = fado_dict.get(val, 0) + 1
+
+    for k in fado_dict:
+        fado_frequences.append([k, fado_dict[k]])
 
 if __name__ == "__main__":
-    load_police_data()
+    # load_police_data()
     app.debug = True
     app.run()
