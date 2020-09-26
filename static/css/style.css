@@ -5,16 +5,12 @@
     height: 100%;
 }
 #box{
-
-    padding-top: 45px;
     height:100%;
     float: left;
     z-index: 100;
     position: absolute;
 }
 #search{
-
-    padding-top: 45px;
     height:100%;
     float: right;
     z-index: 100;
@@ -24,4 +20,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body{
+    padding-top: 55px;
 }
