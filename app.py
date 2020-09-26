@@ -28,7 +28,7 @@ board_dict = {}
 def main():
     config = configparser.ConfigParser()
     config.read('properties.ini')
-    return render_template("index.html", key=config["DEFAULT"]["Key"])
+    return render_template("home.html", key=config["DEFAULT"]["Key"])
 
 @app.route("/api/get_officer_complaint_ranking", methods=['GET', 'POST'])
 def officer_complaint_ranking():
@@ -88,13 +88,13 @@ def data_by_precinct():
     # config.read('properties.ini')
     # return render_template("index.html", key=config["DEFAULT"]["Key"])
 
-@app.route("/home")
+@app.route("/map")
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
-@app.route("/graph")
-def graph():
-    return render_template("graph.html")
+@app.route("/data")
+def data():
+    return render_template("data.html")
 
 @app.route("/contacts")
 def contacts():
@@ -147,13 +147,13 @@ def load_police_data():
     temp_precint_rank_arr = []
     for precinct_num in data_per_command:
         temp_precint_rank_arr.append((len(data_per_command[precinct_num]), precinct_num))
-    
+
     temp_precint_rank_arr.sort(key = lambda x: x[0], reverse=True)
 
     for i in range(len(temp_precint_rank_arr)):
         precinct_rank[temp_precint_rank_arr[i][1]] = i
 
-    
+
     first_name_idx = columns.index("First Name")
     last_name_idx = columns.index("Last Name")
 
@@ -179,7 +179,7 @@ def load_police_data():
             last_4 = row[incident_idx][-4:]
             if last_4 != '1900' and last_4 != '1983' and last_4 != '1984':
                 year_complaint_dict[last_4] = year_complaint_dict.get(last_4, 0) + 1
-    
+
     for i in range(1985, 2020+1):
         complaints_by_year.append(year_complaint_dict[str(i)])
 
