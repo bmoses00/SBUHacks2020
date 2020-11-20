@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, jsonify
 import configparser
 import csv
 
+import os
+DIR = os.path.dirname(__file__) or '.'
+DIR += '/'
+
 ccrb_database = []
 data_per_command = {}
 precinct_rank = {}
@@ -107,7 +111,7 @@ def resources():
 def load_police_data():
     print("loading data")
 
-    with open('static/data/CCRB_database_raw.csv', 'r') as csvfile:
+    with open(DIR + 'static/data/CCRB_database_raw.csv', 'r') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
             ccrb_database.append(row)
