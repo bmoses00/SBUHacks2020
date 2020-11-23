@@ -50,6 +50,9 @@ html, body {
     padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 .c3-axis .tick line {display: none;}
 
@@ -154,3 +157,12 @@ body{
 }
 
 /* Credit to Mike Tricking at https://miketricking.github.io/bootstrap-image-hover/ for hover effect*/
+
+
+.hr-white {
+    border: 1px solid white;
+}
+
+.fadein {
+    opacity: 0;
+}
