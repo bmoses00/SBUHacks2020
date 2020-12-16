@@ -70,7 +70,7 @@ function initMap() {
     document.getElementById("find_address_button", handle_address);
     autocomplete.addListener("place_changed", handle_address);
 
-    document.getElementById("mark_current_location").addEventListener('click', () => {
+    /* document.getElementById("mark_current_location").addEventListener('click', () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 if (selected_location != null) {
@@ -107,7 +107,7 @@ function initMap() {
             window.alert("GPS is not available!");
             return;
         }
-    });
+    });*/
 
     fetch('api/get_rankings').then(response => response.json())
         .then(data => {

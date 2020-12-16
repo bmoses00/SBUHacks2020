@@ -1,7 +1,8 @@
-fetch('api/get_officer_complaint_ranking').then(response => response.json())
+fetch('api/get_data').then(response => response.json())
     .then(data => {
-        data.arr.splice(0, 0, "Complaint Count");
-        console.log(data.arr.length)
+        // officer_ranking
+        officer_data = data.arr.short_arr;
+        officer_data.splice(0, 0, "Complaint Count");
         let ranking = ["x"];
         for (let i = 1; i <= 1461; i++) {
             ranking[i] = i*50;
@@ -12,7 +13,7 @@ fetch('api/get_officer_complaint_ranking').then(response => response.json())
              x: "x",
              columns: [
                ranking,
-               data.arr,
+               officer_data,
              ],
              colors: {
                "Complaint Count": "#ff0000"
@@ -22,60 +23,59 @@ fetch('api/get_officer_complaint_ranking').then(response => response.json())
              }
            }
        });
-    });
 
-fetch('api/get_complaints_by_year').then(response => response.json())
-    .then(data => {
-        data.arr.splice(0, 0, "Complaints by Year");
-        // creating list for x-axis, from 1985 to 2020
-        let years = ["x"]
-        for (let i = 1; i <= 40; i++) {
-            years[i] = i + 1984;
+
+       // complaints by year
+       year_data = data.arr.complaints_by_year;
+       year_data.splice(0, 0, "Complaints by Year");
+       // creating list for x-axis, from 1985 to 2020
+       let years = ["x"]
+       for (let i = 1; i <= 40; i++) {
+           years[i] = i + 1984;
+       }
+       var chart = c3.generate({
+          bindto: '#yearly',
+          data: {
+            x: "x",
+            columns: [
+              years,
+              year_data,
+            ],
+            types: {
+              "Complaints by Year": "bar"
+            }
+          }
+      });
+
+
+      // fado frequencies
+      fado_data = data.arr.fado_frequences
+      var chart = c3.generate({
+         bindto: '#fado',
+         data: {
+           columns: fado_data,
+           type: "pie"
+         }
+     });
+
+
+     // allegation frequencies
+     allegation_data = data.arr.allegation_frequencies
+     var chart = c3.generate({
+        bindto: '#allegations',
+        data: {
+          columns: allegation_data,
+          type: "pie"
         }
-        var chart = c3.generate({
-           bindto: '#yearly',
-           data: {
-             x: "x",
-             columns: [
-               years,
-               data.arr,
-             ],
-             types: {
-               "Complaints by Year": "bar"
-             }
-           }
-       });
     });
 
 
-fetch('api/get_fado_frequences').then(response => response.json())
-    .then(data => {
-    var chart = c3.generate({
-       bindto: '#fado',
-       data: {
-         columns: data.arr,
-         type: "pie"
-       }
-   });
-});
-
-fetch('api/get_allegation_frequences').then(response => response.json())
-    .then(data => {
-    var chart = c3.generate({
-       bindto: '#allegations',
-       data: {
-         columns: data.arr,
-         type: "pie"
-       }
-   });
-});
-
-fetch('api/get_board_frequences').then(response => response.json())
-    .then(data => {
+    // board frequencies
+    board_data = data.arr.board_frequences
     var chart = c3.generate({
        bindto: '#dispositions',
        data: {
-         columns: data.arr,
+         columns: board_data,
          type: "pie"
        }
    });
