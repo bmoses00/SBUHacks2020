@@ -70,7 +70,7 @@ function initMap() {
     document.getElementById("find_address_button", handle_address);
     autocomplete.addListener("place_changed", handle_address);
 
-    /* document.getElementById("mark_current_location").addEventListener('click', () => {
+    document.getElementById("mark_current_location").addEventListener('click', () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 if (selected_location != null) {
@@ -89,15 +89,14 @@ function initMap() {
 
                 let match = -1;
                 for (let i = 0; i < features.length; i++) {
-                    // console.log(features[i].getGeometry().getType());
                     features[i].getGeometry().getArray().forEach(polygon => {
-                        // console.log(polygon.getType());
-                        // console.log(Object.getOwnPropertyNames(polygon));
+                        console.log(polygon.getType());
+                        console.log(Object.getOwnPropertyNames(polygon));
                         // console.log(polygon.getGeometry());
                         // console.log(polygon.getVisible());
-                        if (google.maps.geometry.poly.containsLocation(new google.maps.LatLng(latLong), polygon)) {
+                        if (google.maps.geometry.poly.containsLocation(new google.maps.LatLng(latLong), new google.maps.Polygon({paths:polygon.getAt(0).getArray()}))) {
                             match = i;
-                            display_data(features[i].j.precinct);
+                            display_data(features[i].i.precinct);
                             return;
                         }
                     });
@@ -107,7 +106,7 @@ function initMap() {
             window.alert("GPS is not available!");
             return;
         }
-    });*/
+    });
 
     fetch('api/get_rankings').then(response => response.json())
         .then(data => {
@@ -124,7 +123,7 @@ function initMap() {
         });
     });
     map.data.setStyle(feature => {
-        let precinct = feature.j.precinct;
+        let precinct = feature.i.precinct;
 
         let percent = (rankings[precinct] - 1) / 76;
         let r = [255, 0, 0];
@@ -155,7 +154,7 @@ function initMap() {
         totalLatLong[0] /= points;
         totalLatLong[1] /= points;
 
-        let precinct = event.feature.j.precinct;
+        let precinct = event.feature.i.precinct;
         if (infowindow != null) infowindow.close();
         infowindow = new google.maps.InfoWindow({
             content: "Precinct " + precinct,
@@ -176,7 +175,7 @@ function initMap() {
         if (marker != null) marker.setMap(null);
     });
     map.data.addListener('click', function (event) {
-        display_data(event.feature.j.precinct);
+        display_data(event.feature.i.precinct);
     });
     map.addListener('click', function (event) {
         sidebar.style.display = "None";
