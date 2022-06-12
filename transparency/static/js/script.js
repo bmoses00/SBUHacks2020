@@ -123,7 +123,8 @@ function initMap() {
         });
     });
     map.data.setStyle(feature => {
-        let precinct = feature.i.precinct;
+   
+        let precinct = feature.h.precinct || feature.j.precinct;
 
         let percent = (rankings[precinct] - 1) / 76;
         let r = [255, 0, 0];
@@ -154,7 +155,9 @@ function initMap() {
         totalLatLong[0] /= points;
         totalLatLong[1] /= points;
 
-        let precinct = event.feature.i.precinct;
+        
+        let precinct = event.feature.h.precinct || event.feature.j.precinct;
+
         if (infowindow != null) infowindow.close();
         infowindow = new google.maps.InfoWindow({
             content: "Precinct " + precinct,
@@ -175,7 +178,7 @@ function initMap() {
         if (marker != null) marker.setMap(null);
     });
     map.data.addListener('click', function (event) {
-        display_data(event.feature.i.precinct);
+        display_data(event.feature.h.precinct || event.feature.j.precinct);
     });
     map.addListener('click', function (event) {
         sidebar.style.display = "None";
